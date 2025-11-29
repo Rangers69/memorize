@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>7 Tahun Bersama | Dodo & Dhea</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --primary: #111827;
+      --accent: #ef4444;
+      --muted: #6b7280;
+      --radius: 18px;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #fef2f2 0, #f7f7f7 40%, #f9fafb 100%);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 1.25rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom,
+        rgba(247, 247, 247, 0.9),
+        rgba(247, 247, 247, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .nav {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      opacity: 0.6;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    main {
+      flex: 1;
+      padding: 1.5rem 1.5rem 3rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2.5rem;
+      align-items: center;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-main {
+      padding-right: 1rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(239, 68, 68, 0.06);
+      color: var(--accent);
+      border: 1px solid rgba(248, 113, 113, 0.4);
+      margin-bottom: 1rem;
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw + 1.2rem, 3rem);
+      letter-spacing: -0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-names {
+      font-size: 1.1rem;
+      font-weight: 500;
+      opacity: 0.8;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-text {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 30rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .meta-pill {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #111827;
+      color: #f9fafb;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+      transform: translateY(0);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.2s;
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.1rem;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.45);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-radius: 999px;
+      padding: 0.6rem 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(148, 163, 184, 0.1);
+      color: var(--primary);
+      border-color: rgba(148, 163, 184, 0.9);
+    }
+
+    .hero-photo-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-photo-inner {
+      border-radius: calc(var(--radius) - 6px);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(135deg, #fee2e2, #e5e7eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-photo-inner::before {
+      content: "D & D";
+      position: absolute;
+      font-size: 3rem;
+      letter-spacing: 0.4em;
+      color: rgba(15, 23, 42, 0.08);
+      text-transform: uppercase;
+      left: 5.6rem;
+      transform: translateY(-200%);
+    }
+
+    .hero-photo-circle {
+      width: 58%;
+      aspect-ratio: 1 / 1;
+      border-radius: 999px;
+      border: 1px solid rgba(249, 250, 251, 0.7);
+      background: radial-gradient(circle at 30% 10%, #ffffff 0, #fecaca 30%, #f97373 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #f9fafb;
+      text-align: center;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .hero-photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      transform: scale(1.6);
+      transform-origin: center;
+    }
+
+    .hero-note {
+      position: absolute;
+      bottom: 1.1rem;
+      left: 1.7rem;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.9);
+      color: #f9fafb;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-note small {
+      opacity: 0.8;
+      font-size: 0.6rem;
+    }
+
+    /* Countdown */
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.35rem;
+      gap: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .section-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .countdown-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.35rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .countdown-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 14rem;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      min-width: 240px;
+    }
+
+    .count {
+      text-align: center;
+      padding: 0.6rem 0.4rem;
+      border-radius: 999px;
+      background: #f9fafb;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      min-width: 70px;
+    }
+
+    .count-number {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .count-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    /* Story */
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.5fr) minmax(0, 2fr);
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    .story-text {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .story-text p + p {
+      margin-top: 0.9rem;
+    }
+
+    .story-highlight {
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      font-size: 0.85rem;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+      background: #ffffff;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s;
+      position: relative;
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+    }
+
+    .timeline-dot {
+      margin-top: 0.3rem;
+      width: 10px;
+      height: 10px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      display: inline-block;
+      flex: 0 0 10px;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px #ffffff;
+      border: 1px solid rgba(239, 68, 68, 0.5);
+    }
+
+    .timeline-body span {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+      letter-spacing: 0.01em;
+    }
+
+    .timeline-body small {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.5rem;
+      top: 0.2rem;
+      bottom: 0.2rem;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(239, 68, 68, 0.35), rgba(148, 163, 184, 0.25));
+      border-radius: 2px;
+    }
+
+    /* Gallery (simple) */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fee2e2, #e5e7eb);
+      aspect-ratio: 4 / 5;
+      position: relative;
+    }
+
+    .gallery-item:nth-child(2) {
+      aspect-ratio: 4 / 5;
+    }
+
+    .gallery-item::after {
+      content: "Foto di sini";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(15, 23, 42, 0.25);
+    }
+
+    .gallery-item {
+      cursor: zoom-in;
+    }
+
+    .gallery-item::before {
+      content: "🔍";
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      font-size: 0.9rem;
+      line-height: 1;
+      background: rgba(17, 24, 39, 0.6);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px;
+      transform: translateZ(0);
+    }
+
+    /* Pastikan img mengisi container dan proporsional */
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Sembunyikan placeholder saat gambar ada */
+    .gallery-item:has(img)::after {
+      display: none;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 92vw;
+      max-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img {
+      max-width: 92vw;
+      max-height: 82vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transform: scale(1);
+      transition: transform 0.15s ease-out;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .lightbox-controls {
+      position: absolute;
+      bottom: -56px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lightbox-btn {
+      background: rgba(255, 255, 255, 0.14);
+      color: #f9fafb;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 999px;
+      padding: 0.5rem 0.8rem;
+      cursor: pointer;
+      font-size: 1rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .lightbox-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* RSVP / Message */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      box-shadow: var(--shadow);
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr);
+      gap: 1rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.9rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 0.6rem 0.9rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      background: #f9fafb;
+      transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    }
+
+    textarea {
+      border-radius: 14px;
+      min-height: 80px;
+      resize: vertical;
+      padding-top: 0.7rem;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      background: #ffffff;
+      box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.4);
+    }
+
+    .form-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+    }
+
+    .note-small {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    /* Mini game bait */
+    .game-bait {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      min-height: 120px;
+      padding: 0.5rem;
+      overflow: hidden;
+    }
+    .game-bait .runaway {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+
+    .msg {
+      font-size: 0.8rem;
+      margin-top: 0.6rem;
+    }
+
+    .msg.success {
+      color: #16a34a;
+    }
+
+    .msg.error {
+      color: #dc2626;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1.5rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding-inline: 1.1rem;
+      }
+
+      main {
+        padding-inline: 1.1rem;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-main {
+        order: 2;
+        padding-right: 0;
+      }
+
+      .hero-photo-card {
+        order: 1;
+      }
+
+      .countdown-card {
+        align-items: flex-start;
+      }
+
+      .countdown-grid {
+        width: 100%;
+      }
+
+      .story-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav-links {
+        display: none;
+      }
+      .hero-photo-inner::before {
+        left: 50%;
+        transform: translateY(-250%);
+        font-size: 2.2rem;
+        letter-spacing: 0.3em;
+        bottom: 50%;
+      }
+      .hero-note {
+        font-size: 0.66rem;
+        padding: 0.35rem 0.6rem;
+        max-width: 80%;
+      }
+      .hero-note small {
+        font-size: 0.56rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .countdown-card {
+        padding-inline: 1rem;
+      }
+      .hero-photo-inner::before {
+        left: 50%;
+        transform: translate(-50%, -230%);
+        font-size: 1.8rem;
+        letter-spacing: 0.28em;
+      }
+      .hero-note {
+        font-size: 0.6rem;
+        padding: 0.32rem 0.55rem;
+        max-width: 85%;
+      }
+      .hero-note small {
+        font-size: 0.52rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <nav class="nav">
+      <div class="nav-logo">
+        <span class="nav-dot"></span>
+        D & D 
+      </div>
+      <div class="nav-links">
+        <a href="#countdown">Countdown</a>
+        <a href="#story">Kisah</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#message">Hadiah</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-main">
+          <div class="tag">
+            <span class="tag-dot"></span>
+            7 tahun bersama
+          </div>
+          <h1 class="hero-title">One more year, side by side.</h1>
+          <p class="hero-names">Dodo &amp; Dhea · 02 Desember 2025</p>
+          <p class="hero-text">
+            Terima kasih sudah bertahan, tumbuh, dan saling memilih setiap hari.
+            Halaman kecil ini dibuat sebagai pengingat bahwa cinta tidak harus
+            ramai — cukup konsisten dan tulus.
+          </p>
+          <div class="hero-meta">
+            <div class="meta-pill">Dimulai: 02 Desember 2018</div>
+            <div class="meta-pill">Suka | Duka | Cinta | Bahagia</div>
+            <div class="meta-pill">Harapan & Perjuangan</div>
+            <div class="meta-pill">Jakarta | Tangerang</div>
+          </div>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="scrollToSection('countdown')">
+              <span class="icon">♥</span>
+              Lihat hitung mundur
+            </button>
+            <button class="btn-ghost" onclick="scrollToSection('message')">
+              Hadiah Spesial
+            </button>
+          </div>
+        </div>
+
+        <aside class="hero-photo-card">
+          <div class="hero-photo-inner">
+            <div class="hero-photo-circle">
+              <img src="./img/us.jpeg" alt="Foto Dodo & Dhea">
+            </div>
+          </div>
+          <div class="hero-note">
+            <span>“Still choosing you.”</span>
+            <small>2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 →</small>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Countdown -->
+      <section id="countdown" class="section">
+        <div class="section-header">
+          <h2 class="section-title">COUNTDOWN</h2>
+          <p class="section-sub">Menghitung mundur menuju hari spesial kita berikutnya.</p>
+        </div>
+        <div class="countdown-card">
+          <p class="countdown-label">
+            Hitung mundur menuju <strong> <br> 2 Desember 2026</strong>.
+            Kadang kita lupa tanggal, jadi biar halaman ini yang mengingatkan.
+          </p>
+          <div class="countdown-grid" id="countdown-grid">
+            <div class="count">
+              <div class="count-number" id="days">–</div>
+              <div class="count-label">Hari</div>
+            </div>
+            <div class="count">
+              <div class="count-number" id="hours">–</div>
+              <div class="count-label">Jam</div>
+            </div>
+            <div class="count">
+              <div class="count-number" id="minutes">–</div>
+              <div class="count-label">Menit</div>
+            </div>
+            <div class="count">
+              <div class="count-number" id="seconds">–</div>
+              <div class="count-label">Detik</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Story -->
+      <section id="story" class="section">
+        <div class="section-header">
+          <h2 class="section-title">KISAH KAMI</h2>
+          <p class="section-sub">Versi pendek dari cerita yang panjang.</p>
+        </div>
+
+        <div class="story-grid">
+          <div class="story-text">
+            <p class="story-highlight">
+              Kita tidak sempurna, tapi selalu berusaha jadi versi terbaik untuk satu sama lain.
+            </p>
+            <p>
+              Dari chat pertama sampai sekarang, banyak hal yang berubah — kerjaan, circle,
+              bahkan mimpi-mimpi kita. Tapi ada satu hal yang tetap: kita masih di sini, saling menemani.
+            </p>
+            <p>
+              Terima kasih sudah mau mendengar cerita paling receh, melihat sisi paling rapuh,
+              dan tetap bertahan di hari-hari yang tidak mudah. Semoga halaman ini jadi pengingat,
+              bahwa apa pun yang terjadi nanti, kita pernah berjuang sejauh ini bersama.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-body">
+                <span>02 Desember 2018</span>
+                <small>Hari ketika kita resmi jadi “kita”.</small>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-body">
+                <span>2019</span>
+                <small>Tahun menyusun mimpi bareng—jatuh, bangun lagi, dan terus belajar menghadapi dunia nyata.</small>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-body">
+                <span>2020</span>
+                <small>Tahun penuh syukur. Kita dianugerahi anak pertama, seorang laki-laki yang mengubah cara kita melihat dunia.</small>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-body">
+                <span>2021</span>
+                <small>Tahun belajar banyak hal: tentang sabar, tentang komunikasi, tentang bagaimana selalu menemukan jalan pulang satu sama lain.</small>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-body">
+                <span>2022</span>
+                <small>Tahun yang makin lengkap. Kita menyambut anak kedua, seorang perempuan yang membuat rumah jadi semakin ramai dan hangat.</small>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-body">
+                <span>2023</span>
+                <small>Masih terus belajar: memahami, menerima, memperbaiki, dan saling menguatkan.</small>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-body">
+                <span>2024</span>
+                <small>Tahun bertumbuh bersama—dengan tawa, tangis, capek, bahagia, semuanya bercampur jadi perjalanan yang indah.</small>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-body">
+                <span>2025</span>
+                <small>Tahun yang mengajarkan bahwa rumah bukan cuma tempat, tapi orangnya. Kita.</small>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-body">
+                <span>2026</span>
+                <small>Kita lihat nanti, tapi semoga tetap saling memilih setiap hari.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section id="gallery" class="section">
+        <div class="section-header">
+          <h2 class="section-title">GALERI KECIL</h2>
+        </div>
+
+        <div class="gallery">
+          <div class="gallery-item">
+            <img src="img/image1.jpeg" alt="Foto 1">
+          </div>
+          <div class="gallery-item">
+            <img src="img/image2.jpeg" alt="Foto 2">
+          </div>
+          <div class="gallery-item">
+            <img src="img/image3.jpeg" alt="Foto 3">
+          </div>
+        </div>
+      </section>
+
+      <!-- Message / RSVP -->
+      <section id="message" class="section">
+        <div class="section-header">
+          <h2 class="section-title">Hadiah Spesial untuk Umma 💝</h2>
+        </div>
+
+        <div class="card">
+          <div class="story-text" style="margin-bottom: 0.8rem;">
+            <p>Sebelum ambil hadiahnya, ada tantangan kecil dulu. Mainkan mini games ini untuk buka hadiah spesialnya 🎁✨</p>
+          </div>
+          <div class="game-bait">
+            <button id="redirectBtn" class="btn-primary" type="button" onclick="window.location.href='game.html'">Aku siap main 🎮</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© <span id="year"></span> Dodo &amp; Dhea.</span>
+      <span>Halaman ini dibuat sederhana — karena yang penting adalah isinya, bukan tampilannya.</span>
+      <span>Pengunjung: <strong id="visitors">–</strong></span>
+    </div>
+  </footer>
+</div>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+  <div class="lightbox-inner">
+    <img id="lightbox-img" class="lightbox-img" alt="Preview gambar" />
+    <div class="lightbox-controls" aria-label="Kontrol zoom">
+      <button id="zoom-out" type="button" class="lightbox-btn" aria-label="Zoom out">−</button>
+      <button id="zoom-reset" type="button" class="lightbox-btn" aria-label="Reset zoom">100%</button>
+      <button id="zoom-in" type="button" class="lightbox-btn" aria-label="Zoom in">+</button>
+    </div>
+  </div>
+  <!-- klik area luar untuk menutup -->
+</div>
+
+<script>
+  // ========= CONFIG YANG BISA KAMU UBAH =========
+  // GANTI TANGGAL ANNIVERSARY BERIKUTNYA DI SINI
+  // Format: YYYY-MM-DDTHH:MM:SS
+  const targetDate = new Date("2026-12-02T00:00:00"); // <<<<<< ganti sesuai tanggalmu
+
+  // ========= COUNTDOWN =========
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate.getTime() - now;
+
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    if (distance <= 0) {
+      daysEl.textContent = "0";
+      hoursEl.textContent = "0";
+      minutesEl.textContent = "0";
+      secondsEl.textContent = "0";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+      (distance % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    daysEl.textContent = days;
+    hoursEl.textContent = hours.toString().padStart(2, "0");
+    minutesEl.textContent = minutes.toString().padStart(2, "0");
+    secondsEl.textContent = seconds.toString().padStart(2, "0");
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // ========= SCROLL HALUS =========
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  window.scrollToSection = scrollToSection;
+
+  // ========= FORM PESAN (DISIMPAN LOKAL) =========
+  const form = document.getElementById("message-form");
+  const statusEl = document.getElementById("message-status");
+
+  const STORAGE_KEY = "anniversary_message_v1";
+
+  function loadMessage() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      if (saved.from) document.getElementById("from").value = saved.from;
+      if (saved.to) document.getElementById("to").value = saved.to;
+      if (saved.message)
+        document.getElementById("message-input").value = saved.message;
+    } catch (e) {
+      console.warn("Gagal load pesan:", e);
+    }
+  }
+
+  loadMessage();
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const from = document.getElementById("from").value.trim();
+    const to = document.getElementById("to").value.trim();
+    const message = document.getElementById("message-input").value.trim();
+
+    if (!message) {
+      statusEl.textContent = "Pesan masih kosong :)";
+      statusEl.className = "msg error";
+      return;
+    }
+
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ from, to, message })
+      );
+      statusEl.textContent = "Pesan disimpan di browser ini. 💌";
+      statusEl.className = "msg success";
+    } catch (error) {
+      statusEl.textContent = "Gagal menyimpan pesan, tapi tetap terima kasih.";
+      statusEl.className = "msg error";
+    }
+  });
+
+  // ========= TAHUN FOOTER =========
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  // ========= VISITOR COUNTER (Approx. Unique per Browser) =========
+  (function initVisitorCounter(){
+    const el = document.getElementById('visitors');
+    if (!el) return;
+    const NS = 'dodo-dhea-anniversary';
+    const KEY = 'unique_visitors';
+    const HIT = `https://api.countapi.xyz/hit/${encodeURIComponent(NS)}/${encodeURIComponent(KEY)}`;
+    const GET = `https://api.countapi.xyz/get/${encodeURIComponent(NS)}/${encodeURIComponent(KEY)}`;
+    const VISITED_KEY = 'visited_once_v1';
+
+    function setCount(n){ el.textContent = n.toLocaleString('id-ID'); }
+
+    const firstTime = !localStorage.getItem(VISITED_KEY);
+    const url = firstTime ? HIT : GET;
+
+    fetch(url, { mode: 'cors' })
+      .then(r => r.json())
+      .then(d => {
+        if (d && typeof d.value === 'number') {
+          setCount(d.value);
+          try {
+            localStorage.setItem('visitor_count_cache', String(d.value));
+            if (firstTime) localStorage.setItem(VISITED_KEY, '1');
+          } catch {}
+        } else {
+          throw new Error('Invalid response');
+        }
+      })
+      .catch(() => {
+        // Fallback: tampilkan cache terakhir jika ada
+        const cached = parseInt(localStorage.getItem('visitor_count_cache') || '0', 10);
+        if (cached > 0) {
+          setCount(cached);
+          return;
+        }
+        // Jika benar-benar offline pertama kali, tampilkan 1 lalu tandai visited lokal
+        setCount(1);
+        try { if (firstTime) localStorage.setItem(VISITED_KEY, '1'); } catch {}
+      });
+  })();
+
+  // ========= LIGHTBOX GALLERY =========
+  (function setupLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const imgEl = document.getElementById('lightbox-img');
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+    const zoomResetBtn = document.getElementById('zoom-reset');
+    let scale = 1;
+
+    function openLightbox(src, alt) {
+      imgEl.src = src;
+      imgEl.alt = alt || 'Preview gambar';
+      scale = 1;
+      imgEl.style.transform = `scale(${scale})`;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      imgEl.src = '';
+    }
+
+    function setScale(next) {
+      scale = Math.min(4, Math.max(0.5, next));
+      imgEl.style.transform = `scale(${scale})`;
+    }
+
+    document.querySelectorAll('.gallery-item img').forEach((thumb) => {
+      thumb.addEventListener('click', () => openLightbox(thumb.src, thumb.alt));
+    });
+
+    zoomInBtn.addEventListener('click', () => setScale(scale + 0.2));
+    zoomOutBtn.addEventListener('click', () => setScale(scale - 0.2));
+    zoomResetBtn.addEventListener('click', () => setScale(1));
+
+    // Tutup saat klik di luar gambar atau tekan Esc
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === '+') setScale(scale + 0.2);
+      if (e.key === '-') setScale(scale - 0.2);
+      if (e.key.toLowerCase() === 'r') setScale(1);
+    });
+  })();
+
+  // ========= MINI GAME BAIT =========
+  (function setupMiniGameBait() {
+    const redirectBtn = document.getElementById('redirectBtn');
+    const runawayBtn = document.getElementById('runawayBtn');
+    const area = runawayBtn?.closest('.game-bait');
+    if (!redirectBtn || !runawayBtn || !area) return;
+
+    // Password prompt (opsional): uncomment untuk mengaktifkan
+    // const pass = prompt('Masukkan kata sandi khusus:');
+    // if (pass !== 'KATA-SANDI-ISTRI') return; // ganti sesuai kata sandi
+
+    const areaRect = () => area.getBoundingClientRect();
+    const btnSize = { w: 120, h: 40 };
+
+    function randomPos() {
+      const rect = areaRect();
+      const pad = 8;
+      const x = Math.random() * (rect.width - btnSize.w - pad * 2) + pad;
+      const y = Math.random() * (rect.height - btnSize.h - pad * 2) + pad;
+      runawayBtn.style.left = `${x}px`;
+      runawayBtn.style.top = `${y}px`;
+      runawayBtn.style.transform = 'translate(0, 0)';
+    }
+
+    // Kabur saat hover atau saat mouse mendekat
+    function onEvade(e) {
+      randomPos();
+    }
+    runawayBtn.addEventListener('mouseenter', onEvade);
+    runawayBtn.addEventListener('mousemove', onEvade);
+    runawayBtn.addEventListener('touchstart', onEvade, { passive: true });
+
+    // Redirect tombol benar
+    redirectBtn.addEventListener('click', () => {
+      window.location.href = 'game.html'; // ganti jika perlu
+    });
+  })();
+</script>
+</body>
+</html>

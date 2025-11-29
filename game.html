@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Games | Dodo & Dhea</title>
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --card: #ffffff;
+      --primary: #111827;
+      --accent: #ef4444;
+      --muted: #6b7280;
+      --radius: 18px;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(circle at top, #fef2f2 0, #f7f7f7 40%, #f9fafb 100%);
+      color: var(--primary);
+      min-height: 100vh; display: grid; place-items: center; padding: 1.25rem;
+    }
+    .card {
+      width: 100%; max-width: 560px; background: var(--card); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1.4rem 1.6rem;
+    }
+    .title { font-size: 1rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .sub { margin-top: .35rem; color: var(--muted); font-size: .92rem; }
+    .row { margin-top: 1rem; display: grid; gap: .6rem; }
+    label { font-size: .8rem; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+    input {
+      width: 100%; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: .7rem .9rem; font-size: .95rem; background: #f9fafb; outline: none;
+    }
+    input:focus { border-color: var(--accent); background: #fff; box-shadow: 0 0 0 1px rgba(248, 113, 113, .35); }
+    .actions { margin-top: .8rem; display: flex; gap: .6rem; }
+    .btn { border: 0; border-radius: 999px; cursor: pointer; font-weight: 600; font-size: .95rem; padding: .7rem 1.1rem; }
+    .btn-primary { background: #111827; color: #f9fafb; box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35); }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid rgba(148, 163, 184, .5); }
+    .btn-gold { background: linear-gradient(135deg, #f7d24c, #f0b90b); color: #111827; border: 1px solid rgba(17,24,39,.2); box-shadow: 0 12px 30px rgba(240,185,11,.35); }
+    .btn-gold[disabled], .btn-gold[aria-disabled="true"] { cursor: not-allowed; opacity: .9; pointer-events: none; }
+    .btn-choco { background: #7b3f00; color: #fff; box-shadow: 0 12px 28px rgba(123,63,0,.35); border: 1px solid rgba(123,63,0,.6); }
+    .btn-choco-ghost { background: transparent; color: #7b3f00; border: 1px solid rgba(123,63,0,.6); }
+    .msg { font-size: .85rem; margin-top: .6rem; }
+    .error { color: #dc2626; }
+
+    .game-area { display: none; margin-top: 1rem; background: #fff; border: 1px solid rgba(148,163,184,.3); border-radius: 14px; padding: 1rem; }
+    .bait {
+      position: relative; min-height: 360px; border: 1px dashed rgba(148,163,184,.5);
+      border-radius: 12px; display: flex; align-items: center; justify-content: center; padding: .5rem; overflow: hidden;
+    }
+    /* Posisi awal dua tombol (kiri-kanan) */
+    #goldRunner { position: absolute; left: 30%; top: 50%; transform: translate(-50%, -50%); }
+    #chocoGo { position: absolute; left: 70%; top: 50%; transform: translate(-50%, -50%); }
+    .hint { margin-top: .7rem; color: var(--muted); font-size: .85rem; }
+
+    .success { display: none; margin-top: 1rem; padding: .9rem 1rem; border-radius: 12px; background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+
+    .back { margin-top: 1rem; display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; color: var(--muted); text-decoration: none; }
+
+    @media (max-width: 480px) {
+      .card { padding: 1.1rem 1.2rem; }
+      .bait { min-height: 280px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1 class="title">Mini Games</h1>
+    <p id="subtitle" class="sub">Pilih hadiah yang kamu mau 💝, sebelum itu masukan kata sandi yang hanya kamu dan aku tahu.</p>
+
+    <section id="gate" class="row">
+      <div class="row">
+        <label for="pass">Kata Sandi</label>
+        <input id="pass" type="password" placeholder="Kata sandi rahasia" autocomplete="current-password" />
+      </div>
+      <div class="actions">
+        <button id="enter" class="btn btn-primary" type="button">Masuk</button>
+        <button id="showHint" class="btn btn-ghost" type="button">Petunjuk</button>
+      </div>
+      <p id="gateMsg" class="msg"></p>
+    </section>
+
+    <section id="game" class="game-area">
+      <div class="bait" id="bait">
+        <button id="goldRunner" class="btn btn-gold runner" type="button" aria-label="Tombol emas kabur">Kalung emas✨</button>
+        <button id="chocoGo" class="btn btn-choco" type="button">Coklat 🍫</button>
+      </div>
+      <div id="ok" class="success">Yay! Selamat kamu dapet coklat, I Love You Umma🎉</div>
+      <a class="back" href="index.html">← Kembali</a>
+    </section>
+  </main>
+
+  <script>
+    // Ganti kata sandi di sini
+    const SECRET = "iloveyou";
+
+    const gate = document.getElementById('gate');
+    const game = document.getElementById('game');
+    const pass = document.getElementById('pass');
+    const enter = document.getElementById('enter');
+    const showHint = document.getElementById('showHint');
+    const gateMsg = document.getElementById('gateMsg');
+    const subtitle = document.getElementById('subtitle');
+
+    const bait = document.getElementById('bait');
+    const chocoGo = document.getElementById('chocoGo');
+    const goldRunner = document.getElementById('goldRunner');
+    const ok = document.getElementById('ok');
+
+    function openGame() {
+      gate.style.display = 'none';
+      game.style.display = 'block';
+      pass.value = '';
+      gateMsg.textContent = '';
+      if (subtitle) {
+        subtitle.textContent = 'Semangat! Sekarang kejar hadiah yang kamu mau ya 😉';
+      }
+    }
+
+    function wrong(msg) {
+      gateMsg.textContent = msg || 'Kata sandi belum tepat.';
+      gateMsg.className = 'msg error';
+    }
+
+    enter.addEventListener('click', () => {
+      if ((pass.value || '').trim() === SECRET) {
+        openGame();
+      } else {
+        wrong('Kata sandi salah, coba lagi ya.');
+      }
+    });
+
+    pass.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') enter.click();
+    });
+
+    showHint.addEventListener('click', () => {
+      wrong('Petunjuk: sesuatu yang hanya kita berdua tahu.');
+    });
+
+    // Runner button behaviour
+    const areaRect = () => bait.getBoundingClientRect();
+    function randomPos() {
+      const rect = areaRect();
+      const w = goldRunner.offsetWidth || 130;
+      const h = goldRunner.offsetHeight || 44;
+      const pad = 8;
+      const x = Math.random() * (rect.width - w - pad * 2) + pad;
+      const y = Math.random() * (rect.height - h - pad * 2) + pad;
+      goldRunner.style.left = x + 'px';
+      goldRunner.style.top = y + 'px';
+      goldRunner.style.transform = 'translate(0, 0)';
+    }
+
+    function evade() { randomPos(); }
+    goldRunner.addEventListener('mouseenter', evade);
+    goldRunner.addEventListener('mousemove', evade);
+    goldRunner.addEventListener('touchstart', evade, { passive: true });
+
+    chocoGo.addEventListener('click', () => {
+      ok.style.display = 'block';
+      // hentikan perilaku kabur dan matikan interaksi
+      goldRunner.removeEventListener('mouseenter', evade);
+      goldRunner.removeEventListener('mousemove', evade);
+      goldRunner.removeEventListener('touchstart', evade, { passive: true });
+      goldRunner.style.pointerEvents = 'none';
+      goldRunner.disabled = true;
+      goldRunner.setAttribute('aria-disabled', 'true');
+      goldRunner.style.opacity = .35;
+      goldRunner.style.cursor = 'default';
+
+      chocoGo.disabled = true;
+      chocoGo.style.pointerEvents = 'none';
+      chocoGo.style.cursor = 'default';
+    });
+  </script>
+</body>
+</html>
